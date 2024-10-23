@@ -1,4 +1,5 @@
-﻿var stack = new SimpleStack<double>();
+﻿// using SimpleStack implementation
+var stack = new SimpleStack<double>();
 
 stack.Push(1.2);
 stack.Push(2.3);
@@ -15,3 +16,6 @@ while (stack.Count > 0)
 
 System.Console.WriteLine($"Sum: ${sum}");
 System.Console.ReadLine();
+
+// using built-in dotnet generic collection implementation
+var builtInStack = new Stack<double>();
