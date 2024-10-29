@@ -3,4 +3,4 @@
   - `private`: access  is limited to the containing type.
   - `private protected`: access is limited to the containing class or types derived from the containing class within the current assembly.
 
-- Created demos for examples of inheritance with multiple type parameters
+Using `EntityBase` as generic type constraint. This then allows for better type-safety and provides compiler help for available properties and methods on the generic type (in this case, specifically for `GetById` method).
