@@ -1,14 +1,12 @@
 ﻿namespace WiredBrainCoffee.StorageApp.Repositories;
 
-public class GenericRepository<T, TKey>
+public class GenericRepository<T>
 {
-    public TKey? Key { get; set; }
-    protected readonly List<T> _items = new();
+    private readonly List<T> _items = new();
 
-    public void Add(T item)
-    {
-        _items.Add(item);
-    }
+    public void Add(T item) => _items.Add(item);
+    
+    public void Remove(T entity) => _items.Remove(entity);
 
     public void Save()
     {
