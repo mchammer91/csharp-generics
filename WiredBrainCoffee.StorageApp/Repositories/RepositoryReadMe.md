@@ -3,4 +3,6 @@
   - `private`: access  is limited to the containing type.
   - `private protected`: access is limited to the containing class or types derived from the containing class within the current assembly.
 
-Using `EntityBase` as generic type constraint. This then allows for better type-safety and provides compiler help for available properties and methods on the generic type (in this case, specifically for `GetById` method).
+Using `IEntity` as generic type constraint. This then allows for better type-safety and provides compiler help for available properties and methods on the generic type (in this case, specifically for `GetById` method).
+Because both value types (non-nullable) and reference types (nullable) can implement interfaces, simply having `IEntity` as the type constraint only provides so much value compared to the previous value of `EntityBase`. In order to fully reach parity of the previous constraint value, we need to add the `class` constraint. This tells the compiler that `T` must also be a reference type, and therefore is nullable (but not really, since we have the nullable reference type feature turned on). By updating the `class` constraint to `class?` and `IEntity` to `IEntity?`, we're then explicitly allowing `T` to be nullable. As an alternative to the `class` constraint, there is also the `struct` type constraint, which tells the compiler that `T` must be a value type.
+
