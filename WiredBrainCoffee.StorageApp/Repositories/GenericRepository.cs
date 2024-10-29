@@ -2,7 +2,7 @@
 
 public class GenericRepository<T>
 {
-    private readonly List<T> _items = new();
+    protected readonly List<T> _items = new();
 
     public void Add(T item)
     {
