@@ -5,4 +5,7 @@
 
 Using `IEntity` as generic type constraint. This then allows for better type-safety and provides compiler help for available properties and methods on the generic type (in this case, specifically for `GetById` method).
 Because both value types (non-nullable) and reference types (nullable) can implement interfaces, simply having `IEntity` as the type constraint only provides so much value compared to the previous value of `EntityBase`. In order to fully reach parity of the previous constraint value, we need to add the `class` constraint. This tells the compiler that `T` must also be a reference type, and therefore is nullable (but not really, since we have the nullable reference type feature turned on). By updating the `class` constraint to `class?` and `IEntity` to `IEntity?`, we're then explicitly allowing `T` to be nullable. As an alternative to the `class` constraint, there is also the `struct` type constraint, which tells the compiler that `T` must be a value type.
+Reference: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters
+
+The `new()` constraint allows you to create instances of the generic type using its parameterless constructor. Note that if an inheriting type of the type constraint(s) only have constructors with parameters, then the type will no longer have a parameterless constructor and therefore this will break.  
 

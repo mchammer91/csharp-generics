@@ -2,9 +2,11 @@
 
 namespace WiredBrainCoffee.StorageApp.Repositories;
 
-public class GenericRepository<T> where T : class, IEntity
+public class GenericRepository<T> where T : IEntity, new()
 {
     private readonly List<T> _items = new();
+    
+    public T CreateItem() => new T();
 
     public T GetById(int id) => _items.Single(x => x.Id == id);
 
@@ -24,3 +26,8 @@ public class GenericRepository<T> where T : class, IEntity
         }
     }
 }
+
+// Example showing multiple type parameters, each with its own respective type constraints
+public record Example<T1, T2>(T1 Id1, T2 Id2)
+    where T1 : class
+    where T2 : struct; // could also use other type parameter as constraint like: where T2 : T1
