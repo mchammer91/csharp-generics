@@ -3,12 +3,12 @@
 using WiredBrainCoffee.StorageApp.Entities;
 using WiredBrainCoffee.StorageApp.Repositories;
 
-var employeeRepository = new GenericRepository<Employee>();
+var employeeRepository = new ListRepository<Employee>();
 AddEmployees();
 var shouldBeAnna = employeeRepository.GetById(2);
 Console.WriteLine($"Should be Anna: {shouldBeAnna}");
 
-var organizationRepository = new GenericRepository<Organization>();
+var organizationRepository = new ListRepository<Organization>();
 AddOrganizations(organizationRepository);
 var shouldBePluralsight = organizationRepository.GetById(1);
 Console.WriteLine($"Should be Pluralsight: {shouldBePluralsight}");
@@ -24,7 +24,7 @@ void AddEmployees()
     employeeRepository.Save();
 }
 
-void AddOrganizations(GenericRepository<Organization> genericRepository)
+void AddOrganizations(ListRepository<Organization> genericRepository)
 {
     genericRepository.Add(new Organization { Name = "Pluralsight" });
     genericRepository.Add(new Organization { Name = "Globomantics" });

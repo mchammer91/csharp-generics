@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore;
+using WiredBrainCoffee.StorageApp.Entities;
+
+namespace WiredBrainCoffee.StorageApp.Data;
+
+public class StorageAppDbContext : DbContext
+{
+    public DbSet<Employee> Employees => Set<Employee>(); // `Set` is a handy initializer method to avoid having to set a collection to null
+    public DbSet<Organization> Organizations => Set<Organization>();
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseInMemoryDatabase("StorageAppDb");
+    }
+}
