@@ -1,10 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using WiredBrainCoffee.StorageApp.Data;
 using WiredBrainCoffee.StorageApp.Entities;
 using WiredBrainCoffee.StorageApp.Repositories;
 
-var employeeRepository = new ListRepository<Employee>();
-AddEmployees();
+var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
+AddEmployees(employeeRepository);
 var shouldBeAnna = employeeRepository.GetById(2);
 Console.WriteLine($"Should be Anna: {shouldBeAnna}");
 
@@ -16,17 +17,17 @@ Console.WriteLine($"Should be Pluralsight: {shouldBePluralsight}");
 Console.ReadLine();
 return;
 
-void AddEmployees()
+void AddEmployees(IRepository<Employee> repository)
 {
-    employeeRepository.Add(new Employee { FirstName = "Julia" });
-    employeeRepository.Add(new Employee { FirstName = "Anna" });
-    employeeRepository.Add(new Employee { FirstName = "Thomas" });
-    employeeRepository.Save();
+    repository.Add(new Employee { FirstName = "Julia" });
+    repository.Add(new Employee { FirstName = "Anna" });
+    repository.Add(new Employee { FirstName = "Thomas" });
+    repository.Save();
 }
 
-void AddOrganizations(ListRepository<Organization> genericRepository)
+void AddOrganizations(IRepository<Organization> repository)
 {
-    genericRepository.Add(new Organization { Name = "Pluralsight" });
-    genericRepository.Add(new Organization { Name = "Globomantics" });
-    genericRepository.Save();
+    repository.Add(new Organization { Name = "Pluralsight" });
+    repository.Add(new Organization { Name = "Globomantics" });
+    repository.Save();
 }

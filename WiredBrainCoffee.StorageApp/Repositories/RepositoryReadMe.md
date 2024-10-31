@@ -9,3 +9,5 @@ Reference: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/gen
 
 The `new()` constraint allows you to create instances of the generic type using its parameterless constructor. Note that if an inheriting type of the type constraint(s) only have constructors with parameters, then the type will no longer have a parameterless constructor and therefore this will break.  
 
+Creating `ListRepository<T>` and `SqlRepository<T>` classes to inherit from `IRepository<T>`. This way, `Program.cs` can use the `IRepository` interface in its arguments list to adhere to the Dependency Inversion Principle, which states that components should depend on abstractions rather than implementations. This also aligns with Ardalis's blog post [Interfaces Describe What - Implementations Describe How](https://ardalis.com/interfaces-describe-what-implementations-describe-how/).
+

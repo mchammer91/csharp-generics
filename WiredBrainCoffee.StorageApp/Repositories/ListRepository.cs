@@ -2,7 +2,7 @@
 
 namespace WiredBrainCoffee.StorageApp.Repositories;
 
-public class ListRepository<T> where T : IEntity, new()
+public class ListRepository<T> : IRepository<T> where T : IEntity, new()
 {
     private readonly List<T> _items = new();
     
