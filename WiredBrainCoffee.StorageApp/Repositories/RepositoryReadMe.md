@@ -11,3 +11,10 @@ The `new()` constraint allows you to create instances of the generic type using 
 
 Creating `ListRepository<T>` and `SqlRepository<T>` classes to inherit from `IRepository<T>`. This way, `Program.cs` can use the `IRepository` interface in its arguments list to adhere to the Dependency Inversion Principle, which states that components should depend on abstractions rather than implementations. This also aligns with Ardalis's blog post [Interfaces Describe What - Implementations Describe How](https://ardalis.com/interfaces-describe-what-implementations-describe-how/).
 
+Generic type parameters of interfaces are invariant by default. This means that a less-specific type argument can't be used where one is required. You can make the generic type parameter covariant by using the `out` keyword like so: `IInterface<out T>`. This will allow all properties and methods which return `T` to be covariant. However, this will break any properties or methods which use `T` as an argument, because they _must_ be contravariant, meaning they CAN'T use a less specific type than the one specified. In order to get around this, you can create a separate interface specifically for retrieving values that can use the covariant generic type parameter.
+
+Covariance: allowing less or equally specific type to be used than actual implementation.
+Contravariance: requiring more or equally specific type to be used than actual implementation.
+
+Example: `IEnumerable<T>` uses a covariant type parameter: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1#definition
+

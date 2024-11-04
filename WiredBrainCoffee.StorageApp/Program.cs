@@ -6,6 +6,17 @@ using WiredBrainCoffee.StorageApp.Repositories;
 
 var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 AddEmployees(employeeRepository);
+WriteAllToConsole(employeeRepository);
+
+void WriteAllToConsole(IRepository<Employee> repository)
+{
+    var employees = repository.GetAll();
+    foreach (var employee in employees) 
+    {
+        Console.Write(employee);
+    }
+}
+
 var shouldBeAnna = employeeRepository.GetById(2);
 Console.WriteLine($"Should be Anna: {shouldBeAnna}");
 

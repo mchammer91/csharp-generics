@@ -5,7 +5,12 @@ namespace WiredBrainCoffee.StorageApp.Repositories;
 public class ListRepository<T> : IRepository<T> where T : IEntity, new()
 {
     private readonly List<T> _items = new();
-    
+
+    /*
+     * Returns a copy of all items in the collection. 
+     */
+    public IEnumerable<T> GetAll() => _items.ToList();
+
     public T CreateItem() => new T();
 
     public T GetById(int id) => _items.Single(x => x.Id == id);
@@ -20,10 +25,7 @@ public class ListRepository<T> : IRepository<T> where T : IEntity, new()
 
     public void Save()
     {
-        foreach (var item in _items)
-        {
-            Console.WriteLine(item);
-        }
+        // everything already saved in List<T>
     }
 }
 
