@@ -8,7 +8,7 @@ var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 AddEmployees(employeeRepository);
 WriteAllToConsole(employeeRepository);
 
-void WriteAllToConsole(IRepository<Employee> repository)
+void WriteAllToConsole(IReadRepository<Employee> repository)
 {
     var employees = repository.GetAll();
     foreach (var employee in employees) 
