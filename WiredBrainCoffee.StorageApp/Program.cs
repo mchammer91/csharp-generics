@@ -6,9 +6,27 @@ using WiredBrainCoffee.StorageApp.Repositories;
 
 var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 AddEmployees(employeeRepository);
+
+/*
+ * Able to pass SqlRepository<Employee> into method requiring IWriteRepository<Manager>
+ * because of contravariance (allowing more derived type). 
+ */
+AddManagers(employeeRepository);
+
+void AddManagers(IWriteRepository<Manager> repository)
+{
+    // employeeRepository.Add(new Employee()); // only want to be able to add Managers
+    employeeRepository.Add(new Manager() { FirstName = "Sara" });
+    employeeRepository.Add(new Manager() { FirstName = "Henry" });
+}
+
+/*
+ * Able to pass employeeRepository or organizationRepository into method requiring IReadRepository<IEntity>
+ * because of covariance (accepting less derived type).
+ */
 WriteAllToConsole(employeeRepository);
 
-void WriteAllToConsole(IReadRepository<Employee> repository)
+void WriteAllToConsole(IReadRepository<IEntity> repository)
 {
     var employees = repository.GetAll();
     foreach (var employee in employees) 
@@ -24,6 +42,7 @@ var organizationRepository = new ListRepository<Organization>();
 AddOrganizations(organizationRepository);
 var shouldBePluralsight = organizationRepository.GetById(1);
 Console.WriteLine($"Should be Pluralsight: {shouldBePluralsight}");
+WriteAllToConsole(organizationRepository);
 
 Console.ReadLine();
 return;
