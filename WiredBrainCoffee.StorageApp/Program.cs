@@ -143,3 +143,8 @@ void AddBatch<T>(IWriteRepository<T> repository, T[] employees)
  * using a generic method? Seems like that allows room for potentially breaking the
  * contract created by the interface and its generic type parameter in the first place...
  */
+
+/*
+ * The solution is that both ListRepository and SqlRepository have their generic type constraints
+ * specified to adhere to the IRepository interface's constraints
+ */
