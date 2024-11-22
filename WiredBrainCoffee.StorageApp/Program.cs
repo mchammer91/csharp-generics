@@ -15,9 +15,18 @@ AddManagers(employeeRepository);
 
 void AddManagers(IWriteRepository<Manager> repository)
 {
-    // employeeRepository.Add(new Employee()); // only want to be able to add Managers
-    employeeRepository.Add(new Manager() { FirstName = "Sara" });
-    employeeRepository.Add(new Manager() { FirstName = "Henry" });
+    // repository.Add(new Employee()); // only want to be able to add Managers
+    var saraManager = new Manager() { FirstName = "Sara" };
+    var saraManagerCopy = saraManager.Copy();
+
+    if (saraManagerCopy is not null)
+    {
+        saraManagerCopy.FirstName += "_Copy";
+        repository.Add(saraManagerCopy);
+    }
+    
+    repository.Add(saraManager);
+    repository.Add(new Manager() { FirstName = "Henry" });
 }
 
 /*
