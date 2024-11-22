@@ -2,7 +2,7 @@
 - Use `record` type for entities rather than classes
   - Use `StronglyTypedId` library or use custom implementation for `Id` properties on entities
     - Also on `IEntity`'s `Id` property
-- Low priority: what's the difference between initializing the `EmployeeAdded` method inside the delegate constructor and simply passing `EmployeeAdded` as the `SqlRepository` constructor argument?
+- Low priority: what's the difference between initializing the `EmployeeAdded` method inside the delegate constructor and simply passing `EmployeeAdded` as the `SqlRepository` constructor argument? Doesn't seem to be any difference when running either way...
 
 Notes:
 - Updated `Employee` and `Organization` to inherit from new `IEntity` class to be used by `GenericRepository`.

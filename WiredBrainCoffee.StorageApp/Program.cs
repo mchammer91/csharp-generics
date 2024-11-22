@@ -1,13 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using WiredBrainCoffee.StorageApp.Data;
+﻿using WiredBrainCoffee.StorageApp.Data;
 using WiredBrainCoffee.StorageApp.Entities;
 using WiredBrainCoffee.StorageApp.Repositories;
 
 /*
  * Initialize delegate implementation, and then pass it into the SqlRepository constructor
  */
-var itemAdded = new ItemAdded(EmployeeAdded);
+var itemAdded = new ItemAdded<Employee>(EmployeeAdded);
 var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(), itemAdded);
 AddEmployees(employeeRepository);
 
@@ -17,10 +15,9 @@ AddEmployees(employeeRepository);
  */
 AddManagers(employeeRepository);
 
-void EmployeeAdded(object item)
+void EmployeeAdded(Employee employee)
 {
-    var employee = (Employee)item;
-    Console.WriteLine(employee.FirstName);
+    Console.WriteLine("Employee added: " + employee.FirstName);
 }
 
 void AddManagers(IWriteRepository<Manager> repository)
