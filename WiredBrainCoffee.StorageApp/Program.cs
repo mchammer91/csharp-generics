@@ -5,7 +5,14 @@ using WiredBrainCoffee.StorageApp.Repositories;
 /*
  * Initialize delegate implementation, and then pass it into the SqlRepository constructor
  */
-var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(), EmployeeAdded);
+var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
+employeeRepository.ItemAdded += EmployeeRepositoryOnItemAdded;
+
+void EmployeeRepositoryOnItemAdded(object? sender, Employee e)
+{
+    Console.WriteLine("Employee added: " + e.FirstName);
+}
+
 AddEmployees(employeeRepository);
 
 /*
@@ -13,11 +20,6 @@ AddEmployees(employeeRepository);
  * because of contravariance (allowing less derived type). 
  */
 AddManagers(employeeRepository);
-
-void EmployeeAdded(Employee employee)
-{
-    Console.WriteLine("Employee added: " + employee.FirstName);
-}
 
 void AddManagers(IWriteRepository<Manager> repository)
 {

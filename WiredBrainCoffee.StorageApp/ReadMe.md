@@ -11,3 +11,5 @@ Further reading:
 - Why use constraints: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters
 - Struct inheritance: https://stackoverflow.com/a/15408711
 - Variance in delegates: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-in-delegates
+  - Action delegate: https://learn.microsoft.com/en-us/dotnet/api/system.action-1 note the contravariant input type parameter.
+  - Func delegate: https://learn.microsoft.com/en-us/dotnet/api/system.func-2 note the covariant return type parameter and the contravariant input type parameter. 
