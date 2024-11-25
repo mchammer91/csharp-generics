@@ -6,7 +6,7 @@ namespace WiredBrainCoffee.StorageApp.Repositories;
 /*
  * Old-fashioned delegate which accepts any method that returns void and takes an object parameter
  */
-public delegate void ItemAdded<T>(T item);
+public delegate void ItemAdded<in T>(T item);
 
 public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
