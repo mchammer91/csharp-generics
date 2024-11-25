@@ -5,8 +5,7 @@ using WiredBrainCoffee.StorageApp.Repositories;
 /*
  * Initialize delegate implementation, and then pass it into the SqlRepository constructor
  */
-var itemAdded = new ItemAdded<Employee>(EmployeeAdded);
-var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(), itemAdded);
+var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext(), EmployeeAdded);
 AddEmployees(employeeRepository);
 
 /*

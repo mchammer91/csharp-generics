@@ -3,18 +3,13 @@ using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories;
 
-/*
- * Old-fashioned delegate which accepts any method that returns void and takes an object parameter
- */
-public delegate void ItemAdded<in T>(T item);
-
 public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
     private readonly DbContext _dbContext;
-    private readonly ItemAdded<T>? _itemAddedCallback;
+    private readonly Action<T>? _itemAddedCallback;
     private readonly DbSet<T> _dbSet;
 
-    public SqlRepository(DbContext dbContext, ItemAdded<T>? itemAddedCallback = null)
+    public SqlRepository(DbContext dbContext, Action<T>? itemAddedCallback = null)
     {
         _dbContext = dbContext;
         _itemAddedCallback = itemAddedCallback;
