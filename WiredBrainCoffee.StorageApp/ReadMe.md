@@ -10,4 +10,4 @@ Notes:
 Further reading: 
 - Why use constraints: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters
 - Struct inheritance: https://stackoverflow.com/a/15408711
-
+- Variance in delegates: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-in-delegates
